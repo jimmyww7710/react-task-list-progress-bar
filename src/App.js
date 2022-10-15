@@ -3,34 +3,38 @@ import List from './component/list'
 function App() {
   const taskData = [
       {
-        "id": "4487987987987",
+        "id": "asdfjkasdjf",
         "title": "task edit panel",
-        "startDate": "20221010",
-        "endDate": "20221011",
+        "startDate": "2022-10-10",
+        "endDate": "2022-10-11",
         "items": [
           {
-            "name": "",
-            "days": ""
+            "id": "shdkjfhakjdhfauew",
+            "name": "create project and set environment",
+            "days": 1
           },
           {
-            "name": "",
-            "days": ""
+            "id": "shdnxcvnx,mcvnx",
+            "name": "create js/css component",
+            "days": 2
           }
         ]
       },
       {
-        "id": "4123123187",
+        "id": "dsfhajsdhfka",
         "title": "task edit panel",
-        "startDate": "20221010",
-        "endDate": "20221011",
+        "startDate": "2022-10-10",
+        "endDate": "2022-10-11",
         "items": [
           {
-            "name": "",
-            "days": ""
+            "id": "uoiuoiupiupou",
+            "name": "create project and set environment",
+            "days": 1
           },
           {
-            "name": "",
-            "days": ""
+            "id": "zxcvzxcvzxcvzxc",
+            "name": "create js/css component",
+            "days": 2
           }
         ]
       },

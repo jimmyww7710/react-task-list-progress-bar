@@ -1,31 +1,36 @@
 import { useState } from 'react';
 import { StyledTask } from '../style/task.styled' 
+import Details from './details'
 
-function Task({title, startDate, endDate}) {
-    const [taskTitle, setTitle] = useState(title)
-    function titleChange(e) {
-        setTitle(e.target.value)
+function Task({title, startDate, endDate, items, order}) {
+    const[taskTitle, setTaskTitle] = useState(title);
+    const updateTitle = function(e) {
+        setTaskTitle(e.target.value);
     }
 
-    const [taskStartDate, setStartDate] = useState(startDate)
-    function startDateChange(e) {
-        setStartDate(e.target.value)
+    const[taskStartDate, setTaskStartDate] = useState(startDate);
+    const updateStartDate = function(e) {
+        setTaskStartDate(e.target.value);
     }
 
-    const [taskEndDate, setEndDate] = useState(endDate)
-    function endDateChange(e) {
-        setEndDate(e.target.value)
+    const[taskEndDate, setTaskEndDate] = useState(endDate);
+    const updateTaskEndDate= function(e) {
+        setTaskEndDate(e.target.value);
     }
+    
+    
     return (
-      <StyledTask id="task-container"> 
-        <div>
-            Task Name: <input type="text" value={taskTitle} onChange={titleChange} />
-            Start Date: <input type="date" value={taskStartDate} onChange={startDateChange} />
-            End Date <input type="date" value={taskEndDate} onChange={endDateChange} />
-        </div>
-        <div>
-            <p>detail:</p>
-        </div>
+      <StyledTask> 
+        <h2>Task {order}</h2>
+        <input type="text" value={taskTitle} onChange={updateTitle} />
+        <input type="date" value={taskStartDate} onChange={updateStartDate}></input>
+        <input type="date" value={taskEndDate} onChange={updateTaskEndDate}></input>
+        <p>details:</p>
+        {items.map((item) => {
+            const {id, name, days} = item;
+          return <Details key={id} name={name} days={days} ></Details>
+        })}
+        
       </StyledTask>
     );
   }
