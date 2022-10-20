@@ -1,16 +1,28 @@
-// import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import Task from './task'
 
 
 function List({taskData}) {
-    // console.log('taskData:', taskData);
-    
+    const[tempTaskData, setTempTaskData] = useState(taskData);
+    const add = function() {
+      return setTempTaskData((preTaskData) => [
+          ...preTaskData,
+          {
+            "id": "", //自動產生一組新的id
+            "title": "",
+            "startDate": "",
+            "endDate": "",
+            "details": ""
+          }
+      ])
+    }
+
     return (
       <div>
-        {taskData.map((taskItem, index) => {
-          const {title, startDate, endDate, items, id} = taskItem;
-          // console.log(title, startDate, endDate, items, id);
-          return <Task key={id} title={title} startDate={startDate} endDate={endDate} items={items} order={index + 1}></Task>
+        <div onClick={add}>+</div>
+        {tempTaskData.map((taskItem, index) => {
+          const {title, startDate, endDate, datails, id} = taskItem;
+          return <Task key={id} title={title} startDate={startDate} endDate={endDate} datails={datails} order={index + 1}></Task>
         })}
       </div>
     );

@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyledGlobal } from './style/global.styled';
 import List from './component/list'
 function App() {
@@ -7,36 +8,14 @@ function App() {
         "title": "task edit panel",
         "startDate": "2022-10-10",
         "endDate": "2022-10-11",
-        "items": [
-          {
-            "id": "shdkjfhakjdhfauew",
-            "name": "create project and set environment",
-            "days": 1
-          },
-          {
-            "id": "shdnxcvnx,mcvnx",
-            "name": "create js/css component",
-            "days": 2
-          }
-        ]
+        "details": ""
       },
       {
         "id": "dsfhajsdhfka",
         "title": "task edit panel",
         "startDate": "2022-10-10",
         "endDate": "2022-10-11",
-        "items": [
-          {
-            "id": "uoiuoiupiupou",
-            "name": "create project and set environment",
-            "days": 1
-          },
-          {
-            "id": "zxcvzxcvzxcvzxc",
-            "name": "create js/css component",
-            "days": 2
-          }
-        ]
+        "details": ""
       },
     ]
   // const [taskData, setTaskData] = useState([
