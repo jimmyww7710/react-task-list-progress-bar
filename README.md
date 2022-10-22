@@ -1,4 +1,11 @@
-# Getting Started with Create React App
+# About
+react-task-list-progress-bar is RWD tool that offering display working progress dy the range of date.\
+After setting proper started date and Ended date, user can see percentage of progression straight.
+
+function offering:
+- add task
+- delete task
+ 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
