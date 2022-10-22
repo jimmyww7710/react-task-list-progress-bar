@@ -1,6 +1,6 @@
 # About
 react-task-list-progress-bar is RWD tool that offering display working progress dy the range of date.\
-After setting proper started date and Ended date, user can see percentage of progression straight.
+After setting proper started date and ended date, user can see percentage of progression straight.
 
 function offering:
 - add task
