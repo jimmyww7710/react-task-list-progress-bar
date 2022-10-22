@@ -1,18 +1,12 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import StyledGlobal from './style/global.styled';
 import List from './component/list';
 
 function App() {
   const taskData = [
     {
-      id: 'asdfjkasdjf',
-      title: 'task edit panel',
-      startDate: '2022-10-10',
-      endDate: '2022-10-11',
-      details: '',
-    },
-    {
-      id: '',
+      id: uuidv4(),
       title: '',
       startDate: '',
       endDate: '',

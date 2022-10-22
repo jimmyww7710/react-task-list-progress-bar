@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { StyledList } from '../style/list.styled';
 import Task from './task';
 
@@ -8,7 +9,7 @@ function List({ taskData }) {
     return setTempTaskData((preTaskData) => [
       ...preTaskData,
       {
-        id: '', // 自動產生一組新的id
+        id: uuidv4(), // 自動產生一組新的id
         title: '',
         startDate: '',
         endDate: '',
