@@ -1,17 +1,14 @@
 import { useState } from 'react';
-import { StyledTask } from '../style/task.styled';
-// import Details from './details'
+import StyledTask from '../style/task.styled';
 
-function Task({ title, startDate, endDate, datails }) {
+function Task({ title, startDate, endDate, datails, id, clickDeleteButtonHandler }) {
   let wholeDays = 0;
   let progressPercent = 0;
-  const currentDate = new Date();
-  const passedDays = Math.ceil(((currentDate - new Date(startDate)) / (1000 * 60 * 60 * 24)));
-
   const updateWholeDays = function (startDate, endDate) {
     const _startDate = new Date(startDate);
     const _endDate = new Date(endDate);
     wholeDays = Math.ceil((_endDate - _startDate) / (1000 * 60 * 60 * 24)) + 1;
+    const passedDays = Math.ceil(((new Date() - new Date(startDate)) / (1000 * 60 * 60 * 24)));
     progressPercent = Math.floor((passedDays / wholeDays) * 100);
     progressPercent = progressPercent > 100 ? 100 : progressPercent;
   };
@@ -27,7 +24,7 @@ function Task({ title, startDate, endDate, datails }) {
 
   updateWholeDays(taskStartDate, taskEndDate);
   const updateStartDate = function (e) {
-    if (new Date(e.target.value) < taskEndDate) {
+    if (new Date(e.target.value) < new Date(taskEndDate)) {
       setTaskStartDate(e.target.value);
       updateWholeDays(taskStartDate, taskEndDate);
     }
@@ -37,7 +34,8 @@ function Task({ title, startDate, endDate, datails }) {
   };
 
   const updateTaskEndDate = function (e) {
-    if (new Date(e.target.value) > taskStartDate) {
+    console.log(new Date(e.target.value), taskStartDate);
+    if (new Date(e.target.value) > new Date(taskStartDate)) {
       setTaskEndDate(e.target.value);
       updateWholeDays(taskStartDate, taskEndDate);
     }
@@ -47,24 +45,45 @@ function Task({ title, startDate, endDate, datails }) {
   };
   return (
     <StyledTask>
-      <div class="flex-container">
-
-        <div>
-          <input type="text" value={taskTitle} onChange={updateTitle} />
+      <div className="flex-container two-reverse">
+        <div className="form-input-area">
+          <div className="flex-container">
+            Task:
+            <input type="text" value={taskTitle} onChange={updateTitle} />
+          </div>
           <br />
-          <input type="date" value={taskStartDate} onChange={updateStartDate} />
+          <div className="flex-container">
+            start from:
+            <input type="date" value={taskStartDate} onChange={updateStartDate} />
+          </div>
           <br />
-          <input type="date" value={taskEndDate} onChange={updateTaskEndDate} />
+          <div className="flex-container">
+            ended at:
+            <input type="date" value={taskEndDate} onChange={updateTaskEndDate} />
+          </div>
           <br />
         </div>
-
-        <div>
-          <p>
-            {
-              (!taskStartDate || !taskEndDate) ? '' : progressPercent + '%'
-            }
-          </p>
+        <div className="display-area">
+          <div className="progress-bar">
+            <div className="current-progress-percentage" style={{ width: ((!taskStartDate || !taskEndDate) ? 0 : progressPercent) + '%' }}>
+              <span>
+                {
+                  ((!taskStartDate || !taskEndDate) ? 0 : progressPercent) + '%'
+                }
+              </span>
+            </div>
+          </div>
+          <button
+            class="reverse-color"
+            type="button"
+            onClick={() => {
+              clickDeleteButtonHandler(id);
+            }}
+          >
+            delete -
+          </button>
         </div>
+
       </div>
 
       add details:

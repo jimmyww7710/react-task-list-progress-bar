@@ -1,32 +1,48 @@
-import { useState, useEffect} from 'react';
-import Task from './task'
+import { useState } from 'react';
+import { StyledList } from '../style/list.styled';
+import Task from './task';
 
+function List({ taskData }) {
+  const [tempTaskData, setTempTaskData] = useState(taskData);
+  const add = function () {
+    return setTempTaskData((preTaskData) => [
+      ...preTaskData,
+      {
+        id: '', // 自動產生一組新的id
+        title: '',
+        startDate: '',
+        endDate: '',
+        details: '',
+      },
+    ]);
+  };
 
-function List({taskData}) {
-    const[tempTaskData, setTempTaskData] = useState(taskData);
-    const add = function() {
-      return setTempTaskData((preTaskData) => [
-          ...preTaskData,
-          {
-            "id": "", //自動產生一組新的id
-            "title": "",
-            "startDate": "",
-            "endDate": "",
-            "details": ""
-          }
-      ])
-    }
+  const clickDeleteButtonHandler = (id) => {
+    return setTempTaskData((preTaskData) => {
+      return preTaskData.filter((task) => task.id !== id);
+    });
+  };
 
-    return (
-      <div>
-        <div onClick={add}>+</div>
-        {tempTaskData.map((taskItem, index) => {
-          const {title, startDate, endDate, datails, id} = taskItem;
-          return <Task key={id} title={title} startDate={startDate} endDate={endDate} datails={datails} order={index + 1}></Task>
-        })}
-      </div>
-    );
-  }
-  
-  export default List;
-  
+  return (
+    <StyledList>
+      <button type="button" onClick={add}>add Task +</button>
+      {tempTaskData.map((taskItem, index) => {
+        const { title, startDate, endDate, datails, id } = taskItem;
+        return (
+          <Task
+            key={id}
+            title={title}
+            startDate={startDate}
+            endDate={endDate}
+            datails={datails}
+            order={index + 1}
+            id={id}
+            clickDeleteButtonHandler={clickDeleteButtonHandler}
+          />
+        );
+      })}
+    </StyledList>
+  );
+}
+
+export default List;
